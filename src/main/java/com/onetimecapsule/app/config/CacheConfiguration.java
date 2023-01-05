@@ -48,6 +48,13 @@ public class CacheConfiguration {
             createCache(cm, com.onetimecapsule.app.domain.User.class.getName());
             createCache(cm, com.onetimecapsule.app.domain.Authority.class.getName());
             createCache(cm, com.onetimecapsule.app.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.onetimecapsule.app.domain.UserUploadFile.class.getName());
+            createCache(cm, com.onetimecapsule.app.domain.Post.class.getName());
+            createCache(cm, com.onetimecapsule.app.domain.Vote.class.getName());
+            createCache(cm, com.onetimecapsule.app.domain.SubTimeCapsule.class.getName());
+            createCache(cm, com.onetimecapsule.app.domain.SubTimeCapsule.class.getName() + ".posts");
+            createCache(cm, com.onetimecapsule.app.domain.VerifToken.class.getName());
+            createCache(cm, com.onetimecapsule.app.domain.Email.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

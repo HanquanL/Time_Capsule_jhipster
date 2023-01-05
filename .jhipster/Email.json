@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230105034213",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "email",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "recipient",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "body",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Email",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

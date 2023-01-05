@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="PostHeading">
+    <span jhiTranslate="oneTimaCapsuleApp.post.home.title">Posts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="oneTimaCapsuleApp.post.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-post"
+        [routerLink]="['/post/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="oneTimaCapsuleApp.post.home.createLabel"> Create a new Post </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="posts?.length === 0">
+    <span jhiTranslate="oneTimaCapsuleApp.post.home.notFound">No Posts found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="posts && posts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postid">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.postid">Postid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postname">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.postname">Postname</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="url">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.url">Url</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="descrption">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.descrption">Descrption</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="votecount">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.votecount">Votecount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userid.id">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.userid">Userid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="subTimeCapsule.id">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.post.subTimeCapsule">Sub Time Capsule</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/post', post.id, 'view']">{{ post.id }}</a>
+          </td>
+          <td>{{ post.postid }}</td>
+          <td>{{ post.postname }}</td>
+          <td>{{ post.url }}</td>
+          <td>{{ post.descrption }}</td>
+          <td>{{ post.votecount }}</td>
+          <td>
+            {{ post.userid?.id }}
+          </td>
+          <td>
+            <div *ngIf="post.subTimeCapsule">
+              <a [routerLink]="['/sub-time-capsule', post.subTimeCapsule.id, 'view']">{{ post.subTimeCapsule.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/post', post.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/post', post.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(post)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

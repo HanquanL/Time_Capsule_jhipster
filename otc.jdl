@@ -1,0 +1,63 @@
+
+
+entity UserUploadFile{
+	fileid UUID
+    filename String required
+    contentype String
+    filesize String
+    filedata AnyBlob
+}
+
+
+entity Post {
+	postid UUID
+    postname String required
+    url String 
+    descrption String
+    votecount Integer
+}
+
+entity Vote {
+	voteType VoteType 
+}
+
+enum VoteType{
+	UPVOTE("1"),
+    DOWNVOTE("-1")
+}
+
+entity SubTimeCapsule{
+	subtimecapsuleid UUID
+    subtimecapsulename String
+    description String
+    createdate ZonedDateTime
+}
+
+entity VerifToken{
+	tokenid UUID
+    token String
+    expirydate ZonedDateTime
+}
+
+entity Email{
+	subject String
+    recipient String
+    body String
+}
+
+relationship OneToOne {
+	VerifToken{userid} to User
+}
+
+relationship ManyToOne {
+	UserUploadFile{userid} to User,
+    Post{userid} to User,
+    Vote{userid} to User,
+    Vote{postid} to Post,  
+}
+
+relationship OneToMany{
+	SubTimeCapsule to Post
+}
+
+

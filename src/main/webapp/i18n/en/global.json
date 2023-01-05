@@ -7,6 +7,12 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "userUploadFile": "User Upload File",
+        "post": "Post",
+        "vote": "Vote",
+        "subTimeCapsule": "Sub Time Capsule",
+        "verifToken": "Verif Token",
+        "email": "Email",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

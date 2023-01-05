@@ -1,0 +1,27 @@
+{
+  "oneTimaCapsuleApp": {
+    "verifToken": {
+      "home": {
+        "title": "Verif Tokens",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Verif Token",
+        "createOrEditLabel": "Create or edit a Verif Token",
+        "notFound": "No Verif Tokens found"
+      },
+      "created": "A new Verif Token is created with identifier {{ param }}",
+      "updated": "A Verif Token is updated with identifier {{ param }}",
+      "deleted": "A Verif Token is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Verif Token {{ id }}?"
+      },
+      "detail": {
+        "title": "Verif Token"
+      },
+      "id": "ID",
+      "tokenid": "Tokenid",
+      "token": "Token",
+      "expirydate": "Expirydate",
+      "userid": "Userid"
+    }
+  }
+}

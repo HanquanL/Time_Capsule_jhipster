@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-sub-time-capsule-heading"
+        data-cy="SubTimeCapsuleCreateUpdateHeading"
+        jhiTranslate="oneTimaCapsuleApp.subTimeCapsule.home.createOrEditLabel"
+      >
+        Create or edit a Sub Time Capsule
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.subTimeCapsule.subtimecapsuleid" for="field_subtimecapsuleid"
+            >Subtimecapsuleid</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="subtimecapsuleid"
+            id="field_subtimecapsuleid"
+            data-cy="subtimecapsuleid"
+            formControlName="subtimecapsuleid"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.subTimeCapsule.subtimecapsulename" for="field_subtimecapsulename"
+            >Subtimecapsulename</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="subtimecapsulename"
+            id="field_subtimecapsulename"
+            data-cy="subtimecapsulename"
+            formControlName="subtimecapsulename"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.subTimeCapsule.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.subTimeCapsule.createdate" for="field_createdate">Createdate</label>
+          <div class="d-flex">
+            <input
+              id="field_createdate"
+              data-cy="createdate"
+              type="datetime-local"
+              class="form-control"
+              name="createdate"
+              formControlName="createdate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

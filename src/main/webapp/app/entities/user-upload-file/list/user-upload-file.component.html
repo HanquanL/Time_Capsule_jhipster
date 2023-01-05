@@ -1,0 +1,133 @@
+<div>
+  <h2 id="page-heading" data-cy="UserUploadFileHeading">
+    <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.home.title">User Upload Files</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-upload-file"
+        [routerLink]="['/user-upload-file/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.home.createLabel"> Create a new User Upload File </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userUploadFiles?.length === 0">
+    <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.home.notFound">No User Upload Files found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="userUploadFiles && userUploadFiles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fileid">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.fileid">Fileid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="filename">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filename">Filename</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="contentype">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.contentype">Contentype</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="filesize">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filesize">Filesize</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="filedata">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filedata">Filedata</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userid.id">
+            <div class="d-flex">
+              <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.userid">Userid</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userUploadFile of userUploadFiles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-upload-file', userUploadFile.id, 'view']">{{ userUploadFile.id }}</a>
+          </td>
+          <td>{{ userUploadFile.fileid }}</td>
+          <td>{{ userUploadFile.filename }}</td>
+          <td>{{ userUploadFile.contentype }}</td>
+          <td>{{ userUploadFile.filesize }}</td>
+          <td>
+            <a
+              *ngIf="userUploadFile.filedata"
+              (click)="openFile(userUploadFile.filedata, userUploadFile.filedataContentType)"
+              jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            <span *ngIf="userUploadFile.filedata">{{ userUploadFile.filedataContentType }}, {{ byteSize(userUploadFile.filedata) }}</span>
+          </td>
+          <td>
+            {{ userUploadFile.userid?.id }}
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-upload-file', userUploadFile.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-upload-file', userUploadFile.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userUploadFile)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

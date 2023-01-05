@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="post">
+      <h2 data-cy="postDetailsHeading"><span jhiTranslate="oneTimaCapsuleApp.post.detail.title">Post</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ post.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.postid">Postid</span></dt>
+        <dd>
+          <span>{{ post.postid }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.postname">Postname</span></dt>
+        <dd>
+          <span>{{ post.postname }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.url">Url</span></dt>
+        <dd>
+          <span>{{ post.url }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.descrption">Descrption</span></dt>
+        <dd>
+          <span>{{ post.descrption }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.votecount">Votecount</span></dt>
+        <dd>
+          <span>{{ post.votecount }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.userid">Userid</span></dt>
+        <dd>
+          <span>{{ post.userid?.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.post.subTimeCapsule">Sub Time Capsule</span></dt>
+        <dd>
+          <div *ngIf="post.subTimeCapsule">
+            <a [routerLink]="['/sub-time-capsule', post.subTimeCapsule.id, 'view']">{{ post.subTimeCapsule.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/post', post.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

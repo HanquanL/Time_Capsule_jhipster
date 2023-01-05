@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230105034210",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "vote",
+  "fields": [
+    {
+      "fieldName": "voteType",
+      "fieldType": "VoteType",
+      "fieldValues": "UPVOTE (1),DOWNVOTE (-1)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Vote",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "userid",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "post",
+      "relationshipName": "postid",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

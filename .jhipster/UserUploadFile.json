@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20230105034208",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_upload_file",
+  "fields": [
+    {
+      "fieldName": "fileid",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "filename",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contentype",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filesize",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filedata",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserUploadFile",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "userid",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userUploadFile">
+      <h2 data-cy="userUploadFileDetailsHeading">
+        <span jhiTranslate="oneTimaCapsuleApp.userUploadFile.detail.title">User Upload File</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userUploadFile.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.fileid">Fileid</span></dt>
+        <dd>
+          <span>{{ userUploadFile.fileid }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filename">Filename</span></dt>
+        <dd>
+          <span>{{ userUploadFile.filename }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.contentype">Contentype</span></dt>
+        <dd>
+          <span>{{ userUploadFile.contentype }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filesize">Filesize</span></dt>
+        <dd>
+          <span>{{ userUploadFile.filesize }}</span>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.filedata">Filedata</span></dt>
+        <dd>
+          <div *ngIf="userUploadFile.filedata">
+            <a (click)="openFile(userUploadFile.filedata, userUploadFile.filedataContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ userUploadFile.filedataContentType }}, {{ byteSize(userUploadFile.filedata) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="oneTimaCapsuleApp.userUploadFile.userid">Userid</span></dt>
+        <dd>
+          <span>{{ userUploadFile.userid?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-upload-file', userUploadFile.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

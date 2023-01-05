@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20230105034212",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "verif_token",
+  "fields": [
+    {
+      "fieldName": "tokenid",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "token",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expirydate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "VerifToken",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "userid",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

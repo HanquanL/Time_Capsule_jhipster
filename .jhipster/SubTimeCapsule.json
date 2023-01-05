@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230105034211",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sub_time_capsule",
+  "fields": [
+    {
+      "fieldName": "subtimecapsuleid",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "subtimecapsulename",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdate",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SubTimeCapsule",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "post",
+      "otherEntityRelationshipName": "subTimeCapsule",
+      "relationshipName": "post",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,128 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-upload-file-heading"
+        data-cy="UserUploadFileCreateUpdateHeading"
+        jhiTranslate="oneTimaCapsuleApp.userUploadFile.home.createOrEditLabel"
+      >
+        Create or edit a User Upload File
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.fileid" for="field_fileid">Fileid</label>
+          <input type="text" class="form-control" name="fileid" id="field_fileid" data-cy="fileid" formControlName="fileid" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.filename" for="field_filename">Filename</label>
+          <input type="text" class="form-control" name="filename" id="field_filename" data-cy="filename" formControlName="filename" />
+          <div *ngIf="editForm.get('filename')!.invalid && (editForm.get('filename')!.dirty || editForm.get('filename')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('filename')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.contentype" for="field_contentype">Contentype</label>
+          <input
+            type="text"
+            class="form-control"
+            name="contentype"
+            id="field_contentype"
+            data-cy="contentype"
+            formControlName="contentype"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.filesize" for="field_filesize">Filesize</label>
+          <input type="text" class="form-control" name="filesize" id="field_filesize" data-cy="filesize" formControlName="filesize" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.filedata" for="field_filedata">Filedata</label>
+          <div>
+            <div *ngIf="editForm.get('filedata')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('filedata')!.value!, editForm.get('filedataContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('filedataContentType')!.value }}, {{ byteSize(editForm.get('filedata')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ filedata: undefined, filedataContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_filedata"
+              data-cy="filedata"
+              (change)="setFileData($event, 'filedata', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="filedata" id="field_filedata" data-cy="filedata" formControlName="filedata" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="filedataContentType"
+            id="field_filedataContentType"
+            formControlName="filedataContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="oneTimaCapsuleApp.userUploadFile.userid" for="field_userid">Userid</label>
+          <select
+            class="form-control"
+            id="field_userid"
+            data-cy="userid"
+            name="userid"
+            formControlName="userid"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

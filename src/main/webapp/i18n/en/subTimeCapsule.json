@@ -1,0 +1,28 @@
+{
+  "oneTimaCapsuleApp": {
+    "subTimeCapsule": {
+      "home": {
+        "title": "Sub Time Capsules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sub Time Capsule",
+        "createOrEditLabel": "Create or edit a Sub Time Capsule",
+        "notFound": "No Sub Time Capsules found"
+      },
+      "created": "A new Sub Time Capsule is created with identifier {{ param }}",
+      "updated": "A Sub Time Capsule is updated with identifier {{ param }}",
+      "deleted": "A Sub Time Capsule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sub Time Capsule {{ id }}?"
+      },
+      "detail": {
+        "title": "Sub Time Capsule"
+      },
+      "id": "ID",
+      "subtimecapsuleid": "Subtimecapsuleid",
+      "subtimecapsulename": "Subtimecapsulename",
+      "description": "Description",
+      "createdate": "Createdate",
+      "post": "Post"
+    }
+  }
+}
